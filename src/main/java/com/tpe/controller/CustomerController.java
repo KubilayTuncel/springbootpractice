@@ -95,4 +95,35 @@ public class CustomerController {
         return ResponseEntity.ok(customerPage);
 
     }
+
+    //7-Name ile tek bir customer getirme->http://localhost:8080/customers/query?name=Jackc
+    @GetMapping("/query")
+    public ResponseEntity<List<Customer>> getAllCustomerByName(@RequestParam("name") String name) {
+        List<Customer> customersByName = customerService.findCustomerByName(name);
+
+        return ResponseEntity.ok(customersByName);
+    }
+
+    //8-http://localhost:8080/customers/fullquery?name=Harlen&lastName=Coben
+    @GetMapping("/fullquery")
+    public ResponseEntity<List<Customer>> getCustomerByFullName(@RequestParam("name") String name,
+                                                                @RequestParam("lastName") String lastName){
+        List<Customer> customers = customerService.findCustomerByFullName(name,lastName);
+
+        return ResponseEntity.ok(customers);
+
+    }
+
+    //9-İsmi .. ile başlayan customerlar:  http://localhost:8080/customers/jpql?letter=Ja
+    @GetMapping("/jpql")
+    public ResponseEntity<List<Customer>> getCustomerByContainLetter(@RequestParam("letter") String letter){
+        List<Customer> customers = customerService.findCustomerByContainLetter(letter);
+
+        return ResponseEntity.ok(customers);
+    }
+
+    //ÖDEV:Requestle gelen "kelime" name veya lastname inde geçen customerları döndür.
+    //http://localhost:8080/customers/search?word=pa
+
+
 }

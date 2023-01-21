@@ -69,4 +69,19 @@ public class CustomerService {
         return customerRepository.findAll(pageable);
 
     }
+
+    public List<Customer> findCustomerByName(String name){
+
+        return customerRepository.findByName(name);
+    }
+
+    public List<Customer> findCustomerByFullName(String name, String lastName) {
+
+        return customerRepository.findByNameAndLastName(name,lastName);
+    }
+
+    public List<Customer> findCustomerByContainLetter(String letter) {
+        String lowerLetter = letter.toLowerCase();
+        return customerRepository.findAllByNameLike(lowerLetter);
+    }
 }

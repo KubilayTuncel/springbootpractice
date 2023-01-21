@@ -11,6 +11,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="t_customer")
@@ -40,4 +42,7 @@ public class Customer {
     private String email;
 
     private String phone;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Product> product = new ArrayList<>();
 }
